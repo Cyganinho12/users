@@ -1,11 +1,7 @@
 
-window.onload = () => {
-  const heading = document.querySelector('.heading');
-  heading.textContent = 'It\'s working!';
-};
-let dane = [];
-loaddata();
-async function loaddata() {
+
+
+async function loadData() {
   const response = await fetch('http://localhost:3000/users', {
     headers: {
       'Content-Type': 'application/json',
@@ -16,52 +12,37 @@ async function loaddata() {
     headers: {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
-    }})
+    }
+  })
   const obj1 = await response1.json();
+  // console.log(obj)
+  // console.log(obj1)
+  //let joined = obj.concat(obj1);
+
+  // dane1.push(...obj);
+  // dane2.push(...obj1);
+  return [obj, obj1]
+};
+
+window.onload = async () => {
+  const heading = document.querySelector('.heading');
+  heading.textContent = 'It\'s working!';
+
+  const [obj, obj1] = await loadData();
+
   console.log(obj)
   console.log(obj1)
-  let joined = obj.concat(obj1);
-  console.log(joined);
-  dane.push(joined);
-  return joined;
 };
-console.log(dane)
 
-function buildTable(data) {
-  var table = document.getElementById("data_out")
-
-  for (var i = 0; i < data.lenght; i++) {
-    var row = `<tr>
-                <td>${data[i].name}</td>
-                <td>${data[i].uri}</td>
-              </tr>`
-    table.innerHTML+=row
+for (var i = 0; i < obj.lenght; i++) {
+  for (var j = 0; i < obj1.lenght; i++) {
+    
   }
-}
-buildTable(dane);
 
-// await fetch("http://localhost:3000/",{
-//   // .then(function (response) {
-//   //         return response.json();
-//   // })
-//   // .then(function (db) {
-//   //     let placeholder = document.querySelector("#data_out");
-//   //     let out = "";
-//   //     for (let product of db) {
-//   //         out += `
-//   //             <tr>
-//   //                 <td>${product.name}</td>
-//   //                 <td>${product.uris}</td>
-//   //             </tr>
-//   //         `;
-//   //     }
-//   //     placeholder.innerHTML = out;
-//   // })
-//   headers: {
-//       'Accept': 'application/json'
-//   }})
-// .then(response => response.text())
-//   .then(text => console.log(text))
+}
+
+
+//zrobic fora ktory iteruje po 1 tablicy i w nim kolejny ktory porownuje elementy z drugeij tablicy i zapisuje w 3 tablice jakonowa struktura
 
 
 // async function loadintotable(url, table) {
@@ -95,4 +76,16 @@ buildTable(dane);
 //     }
 // }
 // loadintotable("http://localhost:3000/", document.querySelector("table"));
+// function buildTable(data) {
+//   var table = document.getElementById("data_out")
+
+//   for (var i = 0; i < data.lenght; i++) {
+//     var row = `<tr>
+//                 <td>${data[i].name}</td>
+//                 <td>${data[i].uri}</td>
+//               </tr>`
+//     table.innerHTML+=row
+//   }
+// }
+// buildTable(dane1);
 
