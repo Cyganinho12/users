@@ -33,10 +33,15 @@ window.onload = async () => {
   console.log(obj)
   console.log(obj1)
 };
+l=[]
+for (let i = 0; i < obj.lenght; i++) {
 
-for (var i = 0; i < obj.lenght; i++) {
-  for (var j = 0; i < obj1.lenght; i++) {
-    
+  for (let j = 0; i < obj1.lenght; i++){
+    if (obj["uris"] === obj1["uri"]) {
+      l.push(i)
+
+    }
+
   }
 
 }
